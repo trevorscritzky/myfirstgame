@@ -12,6 +12,7 @@
     var stars;
     var score = 0;
     var scoreText;
+    var credits;
     function preload() {
     game.load.image('sky', 'assets/sky.png');
     game.load.image('ground', 'assets/platform.png');
@@ -23,22 +24,30 @@
     function create() {
 //Background and stars
     game.physics.startSystem(Phaser.Physics.ARCADE);
-    game.add.sprite(0, 0, 'firstaid');
+    game.add.sprite(0, 0, 'diamond');
     game.add.sprite(0, 0, 'sky');
     platforms = game.add.group();
     platforms.enableBody = true;
 //Platforms
     //Ground
     var ground = platforms.create(0, game.world.height - 30, 'ground');
-    ground.scale.setTo(2, 1);
+    ground.scale.setTo(5.0, 1);
     ground.body.immovable = true;
     //Platform 1
-    var ledge = platforms.create(0, 500, 'ground');
-    ledge.scale.setTo(2, 1);
+    var ledge = platforms.create(0, 330, 'ground');
+    ledge.scale.setTo(1.1, 0.5);
     ledge.body.immovable = true;
-    //Platform 1
-    var ledge = platforms.create(200, 400, 'ground');
-    ledge.scale.setTo(1, 1);
+    //Platform 2
+    var ledge = platforms.create(0, 450, 'ground');
+    ledge.scale.setTo(1.2, 0.5);
+    ledge.body.immovable = true
+    //Platform 3
+    var ledge = platforms.create(0, 210, 'ground');
+    ledge.scale.setTo(1.0, 0.5);
+    ledge.body.immovable = true
+    //Platform 4
+    var ledge = platforms.create(400, 210, 'ground');
+    ledge.scale.setTo(1.0, 0.5);
     ledge.body.immovable = true
 //Player plysics
     player = game.add.sprite(0, game.world.height - 111, 'dude');
@@ -51,17 +60,14 @@
     cursors = game.input.keyboard.createCursorKeys();
     stars = game.add.group();
     stars.enableBody = true;
-    for (var i = 0; i < 20; i++) {
+    for (var i = 0; i < 1000; i++) {
 //Star physics
-        var star = stars.create(i * 40, 0, 'firstaid');
+        var star = stars.create(i * 0.76, 0, 'diamond');
         star.body.gravity.y = 300;
-        star.body.bounce.y = 0.1 + Math.random() * 0.2;
+        star.body.bounce.y = 0.8 + Math.random() * 0.2;
         star.body.collideWorldBounds = true;
     }
-    scoreText = game.add.text(40, 400, 'Score: 0', {
-        fontsize: '32px',
-        fill: '#000'
-    });
+    scoreText = game.add.text(40, 350, 'Score: 0', { fontsize: '32px', fill: '#000'});
     }
 //Player position
     function update() {
