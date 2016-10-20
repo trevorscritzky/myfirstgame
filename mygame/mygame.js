@@ -4,7 +4,6 @@
     create: create,
     update: update
     });
-    
 //Variables
     var platforms;
     var player;
@@ -12,13 +11,10 @@
     var stars;
     var score = 0;
     var scoreText;
-    var credits;
     function preload() {
     game.load.image('sky', 'assets/sky.png');
     game.load.image('ground', 'assets/platform.png');
-    game.load.image('star', 'assets/star.png');
     game.load.image('diamond','assets/diamond.png');
-    game.load.image('firstaid','assets/firstaid.png');
     game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
     }
     function create() {
@@ -35,20 +31,20 @@
     ground.body.immovable = true;
     //Platform 1
     var ledge = platforms.create(0, 330, 'ground');
-    ledge.scale.setTo(1.1, 0.5);
+    ledge.scale.setTo(1.5, 0.5);
     ledge.body.immovable = true;
     //Platform 2
-    var ledge = platforms.create(0, 450, 'ground');
-    ledge.scale.setTo(1.2, 0.5);
-    ledge.body.immovable = true
+    ledge = platforms.create(0, 450, 'ground');
+    ledge.scale.setTo(1.7, 0.5);
+    ledge.body.immovable = true;
     //Platform 3
-    var ledge = platforms.create(0, 210, 'ground');
+    ledge = platforms.create(0, 210, 'ground');
     ledge.scale.setTo(1.0, 0.5);
-    ledge.body.immovable = true
+    ledge.body.immovable = true;
     //Platform 4
-    var ledge = platforms.create(400, 210, 'ground');
-    ledge.scale.setTo(1.0, 0.5);
-    ledge.body.immovable = true
+    ledge = platforms.create(240, 210, 'ground');
+    ledge.scale.setTo(3.0, 0.5);
+    ledge.body.immovable = true;
 //Player plysics
     player = game.add.sprite(0, game.world.height - 111, 'dude');
     game.physics.arcade.enable(player);
@@ -62,16 +58,15 @@
     stars.enableBody = true;
     for (var i = 0; i < 1000; i++) {
 //Star physics
-        var star = stars.create(i * 0.76, 0, 'diamond');
+        var star = stars.create(i * 0.7, 0, 'diamond');
         star.body.gravity.y = 300;
         star.body.bounce.y = 0.8 + Math.random() * 0.2;
         star.body.collideWorldBounds = true;
     }
-    scoreText = game.add.text(40, 350, 'Score: 0', { fontsize: '32px', fill: '#000'});
+    scoreText = game.add.text(50, 50, 'Calories gained: 0', { fontsize: '32px', fill: '#000'});
     }
 //Player position
     function update() {
-
     var hitPlatform = game.physics.arcade.collide(player, platforms);
     player.body.velocity.x = 0;
 
@@ -92,13 +87,10 @@
     }
     game.physics.arcade.collide(stars, platforms);
     game.physics.arcade.overlap(player, stars, collectStar, null, this);
-
-    
-    
     }
 //Star collector
     function collectStar(player, star){
-    score+= 1;
+    score+= +160;
     star.kill();
-    scoreText.text = "Score: " + score; + "Score:";
+    scoreText.text = "Calories gained: " + score; + "Calories gained:";
     }
