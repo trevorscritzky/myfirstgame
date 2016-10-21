@@ -30,11 +30,11 @@
     ground.scale.setTo(5.0, 1);
     ground.body.immovable = true;
     //Platform 1
-    var ledge = platforms.create(0, 330, 'ground');
+    var ledge = platforms.create(50, 330, 'ground');
     ledge.scale.setTo(1.5, 0.5);
     ledge.body.immovable = true;
     //Platform 2
-    ledge = platforms.create(0, 450, 'ground');
+    ledge = platforms.create(50, 450, 'ground');
     ledge.scale.setTo(1.7, 0.5);
     ledge.body.immovable = true;
     //Platform 3
@@ -58,12 +58,12 @@
     stars.enableBody = true;
     for (var i = 0; i < 1000; i++) {
 //Star physics
-        var star = stars.create(i * 0.7, 0, 'diamond');
+        var star = stars.create(i * 0.8, 0, 'diamond');
         star.body.gravity.y = 300;
         star.body.bounce.y = 0.8 + Math.random() * 0.2;
         star.body.collideWorldBounds = true;
     }
-    scoreText = game.add.text(50, 50, 'Calories gained: 0', { fontsize: '32px', fill: '#000'});
+    scoreText = game.add.text(260, 230, 'Calories gained: 0', { fontsize: '32px', fill: '#000'});
     }
 //Player position
     function update() {
@@ -90,7 +90,7 @@
     }
 //Star collector
     function collectStar(player, star){
-    score+= +160;
+    score+= +220;
     star.kill();
     scoreText.text = "Calories gained: " + score; + "Calories gained:";
     }
